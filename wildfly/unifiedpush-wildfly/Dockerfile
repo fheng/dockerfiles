@@ -1,28 +1,22 @@
 # Use latest rhmap/wildfly image as the base
 FROM rhmap/wildfly
-MAINTAINER Bruno Oliveira <bruno@aerogear.org>
 
 RUN mkdir -p /opt/jboss/wildfly/standalone/data && \
     mkdir -p /opt/jboss/wildfly/standalone/tmp/vfs/temp && \
     mkdir -p /opt/jboss/wildfly/standalone/log && \
     chmod -R 777 /opt/jboss/wildfly/standalone
 
-# Download Aerogear distribution
-ENV UPSVER=1.1.4-SNAPSHOT
-ENV UPSDIST=/opt/aerogear-unifiedpush-server-$UPSVER
-ENV BUILD=37
+USER root
+ENV UPSDIST=/opt/ups
 
-### there is a bug, in the versioning. The TAG is correctly .Final, but the artifacts aren't...
-RUN curl -L -o /opt/aerogear-unifiedpush-server-$UPSVER-dist.tar.gz https://s3-eu-west-1.amazonaws.com/fh-builds/aerogear-unifiedpush-server/$BUILD/aerogear-unifiedpush-server-$UPSVER-dist.tar.gz
-WORKDIR /opt
-RUN tar zxf aerogear-unifiedpush-server-$UPSVER-dist.tar.gz
+ADD artifacts/aerogear-unifiedpush-server-* $UPSDIST/
 
-# unzip migrator and copy liquibase.properties
-WORKDIR $UPSDIST/migrator
-RUN unzip ups-migrator-dist.zip
+WORKDIR $UPSDIST
 
-# Drop-in empty liquibase.properties, mixin env vars added at runtime (see entrypoint.sh)
-RUN touch $UPSDIST/migrator/ups-migrator/liquibase.properties && \
+RUN mv aerogear-unifiedpush-server*/* .  && \
+    rm -Rf aerogear-unifiedpush-server* && \
+    unzip migrator/ups-migrator-dist.zip -d migrator && \
+    touch $UPSDIST/migrator/ups-migrator/liquibase.properties && \
     chmod -R 777 $UPSDIST/migrator/ups-migrator/liquibase.properties
 
 # Run everything below as aerogear user
