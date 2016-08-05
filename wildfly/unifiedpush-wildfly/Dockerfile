@@ -15,9 +15,10 @@ WORKDIR $UPSDIST
 
 RUN mv aerogear-unifiedpush-server*/* .  && \
     rm -Rf aerogear-unifiedpush-server* && \
-    unzip migrator/ups-migrator-dist.zip -d migrator && \
-    touch $UPSDIST/migrator/ups-migrator/liquibase.properties && \
-    chmod -R 777 $UPSDIST/migrator/ups-migrator/liquibase.properties
+    unzip migrator/unifiedpush-migrator-*.zip -d migrator && \
+    mv migrator/unifiedpush-migrator-*/* migrator/ && \
+    touch $UPSDIST/migrator/liquibase.properties && \
+    chmod -R 777 $UPSDIST/migrator/liquibase.properties
 
 # Run everything below as aerogear user
 USER jboss
