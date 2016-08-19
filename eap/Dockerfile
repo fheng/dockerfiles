@@ -1,12 +1,13 @@
-# Use latest jboss/wildfly image as the base
-FROM jboss/wildfly:9.0.0.Final
-MAINTAINER Bruno Oliveira <bruno@abstractj.org>
+# Use latest jboss/eap image as the base
+FROM jboss-eap-6/eap64-openshift:1.3
 
 # Run everything below as root user
 USER root
+ 
 
-# Clean the metadata
-RUN yum install -y unzip wget && yum -q clean all
+# Install required packages. We need to enable only required repo
+RUN yum install --disablerepo * --enablerepo rhel-7-server-rpms  -y unzip wget  && \
+	yum -q clean all
 
 ## MYSQL
 ENV mysql_module_dir=$JBOSS_HOME/modules/com/mysql/jdbc/main/
@@ -18,20 +19,20 @@ COPY configuration/xml/mysql-module.xml ${mysql_module_dir}/module.xml
 # Rename the original configuration file
 RUN mv $JBOSS_HOME/standalone/configuration/standalone.xml $JBOSS_HOME/standalone/configuration/standalone.xml.orig
 
-# WildFly configuration file ready for HTTPS
+# EAP configuration file ready for HTTPS
 ADD configuration/xml/standalone-full-sample.xml $JBOSS_HOME/standalone/configuration/standalone.xml
 
 # Add the certificate.sh script into $JBOSS_HOME/standalone/configuration/certs
 ADD configuration/certs/ $JBOSS_HOME/standalone/configuration/certs
 
 # Switch to $JBOSS_HOME/configuration/certs
-WORKDIR /opt/jboss/wildfly/standalone/configuration/certs
+WORKDIR $JBOSS_HOME/standalone/configuration/certs
 
 # Execute the script to generate self signed certificates
 RUN ./certificate.sh
 
-# Switch to the working dir /opt/jboss/wildfly
-WORKDIR /opt/jboss/wildfly
+# Switch to the working dir 
+WORKDIR $JBOSS_HOME
 
 # Expose SSL default port
 EXPOSE 8443
