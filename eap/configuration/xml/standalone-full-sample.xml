@@ -100,7 +100,7 @@
         <subsystem xmlns="urn:jboss:domain:logging:1.5">
             <console-handler name="RESTEASY">
                 <formatter>
-                    <pattern-formatter pattern="%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
+                    <pattern-formatter pattern="%d{HH:mm:ss,SSS} %X{reqId} %-5p [%c] (%t) %s%E%n"/>
                 </formatter>
             </console-handler>
             <logger category="org.jboss.resteasy" use-parent-handlers="false">
@@ -152,10 +152,10 @@
                 </handlers>
             </root-logger>
             <formatter name="PATTERN">
-                <pattern-formatter pattern="%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
+                <pattern-formatter pattern="%d{HH:mm:ss,SSS} %X{reqId} %-5p [%c] (%t) %s%E%n"/>
             </formatter>
             <formatter name="COLOR-PATTERN">
-                <pattern-formatter pattern="%K{level}%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
+                <pattern-formatter pattern="%K{level}%d{HH:mm:ss,SSS} %X{reqId} %-5p [%c] (%t) %s%E%n"/>
             </formatter>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:cmp:1.1"/>
