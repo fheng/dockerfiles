@@ -16,6 +16,19 @@ RUN wget -O mysql-connector-java-5.1.18.jar http://search.maven.org/remoteconten
 RUN mv mysql-connector-java-5.1.18.jar ${mysql_module_dir}
 COPY configuration/xml/mysql-module.xml ${mysql_module_dir}/module.xml
 
+## modules for json logging
+ENV logmanager_module_dir=$JBOSS_HOME/modules/org/jboss/logmanager/ext/main/
+RUN mkdir -p ${logmanager_module_dir}
+RUN wget -O jboss-logmanager-ext.jar https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/logmanager/jboss-logmanager-ext/1.0.0.Alpha3/jboss-logmanager-ext-1.0.0.Alpha3.jar
+RUN mv jboss-logmanager-ext.jar ${mysql_module_dir}
+COPY configuration/xml/logmanager-module.xml ${logmanager_module_dir}/module.xml
+
+ENV jsonp_module_dir=$JBOSS_HOME/modules/javax/json/api/main/
+RUN mkdir -p ${jsonp_module_dir}
+RUN wget -O javax.json.jar http://search.maven.org/remotecontent?filepath=org/glassfish/javax.json/1.0.4/javax.json-1.0.4.jar
+RUN mv javax.json.jar ${jsonp_module_dir}
+COPY configuration/xml/jsonp-module.xml ${jsonp_module_dir}/module.xml
+
 # Rename the original configuration file
 RUN mv $JBOSS_HOME/standalone/configuration/standalone.xml $JBOSS_HOME/standalone/configuration/standalone.xml.orig
 

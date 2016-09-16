@@ -100,7 +100,7 @@
         <subsystem xmlns="urn:jboss:domain:logging:1.5">
             <console-handler name="RESTEASY">
                 <formatter>
-                    <pattern-formatter pattern="%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
+                    <named-formatter name="JSON"/>
                 </formatter>
             </console-handler>
             <logger category="org.jboss.resteasy" use-parent-handlers="false">
@@ -112,12 +112,12 @@
             <console-handler name="CONSOLE">
                 <level name="INFO"/>
                 <formatter>
-                    <named-formatter name="COLOR-PATTERN"/>
+                    <named-formatter name="JSON"/>
                 </formatter>
             </console-handler>
             <periodic-rotating-file-handler name="FILE" autoflush="true">
                 <formatter>
-                    <named-formatter name="PATTERN"/>
+                    <named-formatter name="JSON"/>
                 </formatter>
                 <file relative-to="jboss.server.log.dir" path="server.log"/>
                 <suffix value=".yyyy-MM-dd"/>
@@ -151,11 +151,8 @@
                     <handler name="FILE"/>
                 </handlers>
             </root-logger>
-            <formatter name="PATTERN">
-                <pattern-formatter pattern="%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
-            </formatter>
-            <formatter name="COLOR-PATTERN">
-                <pattern-formatter pattern="%K{level}%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
+            <formatter name="JSON">
+                <custom-formatter module="org.jboss.logmanager.ext" class="org.jboss.logmanager.ext.formatters.JsonFormatter"/>
             </formatter>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:cmp:1.1"/>
