@@ -20,7 +20,7 @@ COPY configuration/xml/mysql-module.xml ${mysql_module_dir}/module.xml
 ENV logmanager_module_dir=$JBOSS_HOME/modules/org/jboss/logmanager/ext/main/
 RUN mkdir -p ${logmanager_module_dir}
 RUN wget -O jboss-logmanager-ext.jar https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/logmanager/jboss-logmanager-ext/1.0.0.Alpha3/jboss-logmanager-ext-1.0.0.Alpha3.jar
-RUN mv jboss-logmanager-ext.jar ${mysql_module_dir}
+RUN mv jboss-logmanager-ext.jar ${logmanager_module_dir}
 COPY configuration/xml/logmanager-module.xml ${logmanager_module_dir}/module.xml
 
 ENV jsonp_module_dir=$JBOSS_HOME/modules/javax/json/api/main/
