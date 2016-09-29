@@ -14,5 +14,12 @@ echo "Starting Liquibase migration"
 cd $UPSDIST/migrator/
 ./bin/ups-migrator update
 
+LOGGING_FILE=$JBOSS_HOME/standalone/configuration/logging.properties
+
+. $JBOSS_HOME/bin/launch/json_logging.sh
+configure_json_logging
+
+echo "Running $JBOSS_IMAGE_NAME image, version $JBOSS_IMAGE_VERSION-$JBOSS_IMAGE_RELEASE"
+
 # launch eap
 exec $JBOSS_HOME/bin/standalone.sh -b 0.0.0.0 $@
