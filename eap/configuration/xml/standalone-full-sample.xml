@@ -31,6 +31,11 @@
         <extension module="org.jboss.as.weld"/>
     </extensions>
     <system-properties>
+        <property name="http.proxyHost" value="${env.HTTP_PROXY_HOST}"/>
+        <property name="http.proxyPort" value="${env.HTTP_PROXY_PORT}"/>
+        <property name="https.proxyHost" value="${env.HTTPS_PROXY_HOST}"/>
+        <property name="https.proxyPort" value="${env.HTTPS_PROXY_PORT}"/>
+        <property name="http.nonProxyHosts" value="${env.NON_PROXY_HOSTS}"/>
         <property name="keycloak.host" value="${env.KEYCLOAK_BASE_URL}"/>
         <property name="aerogear.android.batchSize" value="1000"/>
         <property name="aerogear.android.batchesToLoad" value="10"/>
