@@ -108,6 +108,17 @@
                     <named-formatter name="OPENSHIFT"/>
                 </formatter>
             </console-handler>
+            <console-handler name="AEROGEAR">
+              <formatter>
+                <named-formatter name="COLOR-PATTERN"/>
+              </formatter>
+            </console-handler>
+            <logger category="org.jboss.aerogear.unifiedpush" use-parent-handlers="false">
+              <level name="FINEST"/>
+              <handlers>
+                <handler name="AEROGEAR"/>
+              </handlers>
+            </logger>
             <logger category="org.jboss.resteasy" use-parent-handlers="false">
                 <level name="ERROR"/>
                 <handlers>
@@ -122,7 +133,7 @@
                 </subhandlers>
             </async-handler>
             <console-handler name="CONSOLE">
-                <level name="INFO"/>
+                <level name="TRACE"/>
                 <formatter>
                     <named-formatter name="OPENSHIFT"/>
                 </formatter>
