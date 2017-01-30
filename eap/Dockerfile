@@ -3,14 +3,20 @@ FROM jboss-eap-6/eap64-openshift:1.3
 
 # Run everything below as root user
 USER root
- 
+
 
 # Install required packages. We need to enable only required repo
 RUN yum install --disablerepo * --enablerepo rhel-7-server-rpms  -y unzip wget  && \
 	yum -q clean all
 
 ## MYSQL
-ENV mysql_module_dir=$JBOSS_HOME/modules/com/mysql/jdbc/main/
+ENV mysql_module_dir=$JBOSS_HOME/modules/com/mysql/jdbc/main/ \
+    NON_PROXY_HOSTS="" \
+    HTTP_PROXY_HOST="" \
+    HTTP_PROXY_PORT="" \
+    HTTPS_PROXY_HOST="" \
+    HTTPS_PROXY_PORT=""
+
 RUN mkdir -p ${mysql_module_dir}
 RUN wget -O mysql-connector-java-5.1.18.jar http://search.maven.org/remotecontent\?filepath\=mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar
 RUN mv mysql-connector-java-5.1.18.jar ${mysql_module_dir}
@@ -31,7 +37,7 @@ WORKDIR $JBOSS_HOME/standalone/configuration/certs
 # Execute the script to generate self signed certificates
 RUN ./certificate.sh
 
-# Switch to the working dir 
+# Switch to the working dir
 WORKDIR $JBOSS_HOME
 
 # Expose SSL default port
