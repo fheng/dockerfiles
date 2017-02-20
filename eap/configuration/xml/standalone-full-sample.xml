@@ -31,8 +31,8 @@
         <extension module="org.jboss.as.weld"/>
     </extensions>
     <system-properties>
-        <property name="socksProxyHost" value="${env.SOCKS_PROXY_HOST}">
-        <property name="socksProxyPort" value="${env.SOCKS_PROXY_PORT}">
+        <property name="socksProxyHost" value="${env.SOCKS_PROXY_HOST}" />
+        <property name="socksProxyPort" value="${env.SOCKS_PROXY_PORT}" />
         <property name="http.proxyHost" value="${env.HTTP_PROXY_HOST}"/>
         <property name="http.proxyPort" value="${env.HTTP_PROXY_PORT}"/>
         <property name="https.proxyHost" value="${env.HTTPS_PROXY_HOST}"/>
