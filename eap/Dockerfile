@@ -1,5 +1,5 @@
 # Use latest jboss/eap image as the base
-FROM jboss-eap-6/eap64-openshift:1.3
+FROM jboss-eap-6/eap64-openshift:1.4-33
 
 # Run everything below as root user
 USER root
