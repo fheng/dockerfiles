@@ -115,6 +115,17 @@
                     <handler name="RESTEASY"/>
                 </handlers>
             </logger>
+            <console-handler name="AEROGEAR">
+                <formatter>
+                    <pattern-formatter pattern="%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
+                </formatter>
+            </console-handler>
+             <logger category="org.jboss.aerogear.unifiedpush" use-parent-handlers="false">
+                <level name="INFO"/>
+                <handlers>
+                    <handler name="AEROGEAR"/>
+                </handlers>
+            </logger>
             <async-handler name="ASYNC">
                 <queue-length value="512"/>
                 <overflow-action value="block"/>
