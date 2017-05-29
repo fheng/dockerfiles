@@ -35,6 +35,7 @@
         <property name="http.proxyPort" value="${env.HTTP_PROXY_PORT}"/>
         <property name="https.proxyHost" value="${env.HTTPS_PROXY_HOST}"/>
         <property name="https.proxyPort" value="${env.HTTPS_PROXY_PORT}"/>
+        <property name="jdk.http.auth.tunneling.disabledSchemes" value=""/>
         <property name="http.nonProxyHosts" value="${env.NON_PROXY_HOSTS}"/>
         <property name="keycloak.host" value="${env.KEYCLOAK_BASE_URL}"/>
         <property name="aerogear.android.batchSize" value="1000"/>
