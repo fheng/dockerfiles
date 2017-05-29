@@ -22,4 +22,4 @@ configure_json_logging
 echo "Running $JBOSS_IMAGE_NAME image, version $JBOSS_IMAGE_VERSION-$JBOSS_IMAGE_RELEASE"
 
 # launch eap
-exec $JBOSS_HOME/bin/standalone.sh -Djdk.http.auth.tunneling.disabledSchemes="" -b 0.0.0.0 $@
+exec $JBOSS_HOME/bin/standalone.sh -b 0.0.0.0 $@
