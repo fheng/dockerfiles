@@ -115,6 +115,12 @@
                     <handler name="RESTEASY"/>
                 </handlers>
             </logger>
+             <logger category="org.jboss.aerogear.unifiedpush" use-parent-handlers="false">
+                <level name="INFO"/>
+                <handlers>
+                    <handler name="AEROGEAR"/>
+                </handlers>
+            </logger>
             <async-handler name="ASYNC">
                 <queue-length value="512"/>
                 <overflow-action value="block"/>
