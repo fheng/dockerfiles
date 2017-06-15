@@ -46,6 +46,8 @@
         <property name="aerogear.windows_wns.batchesToLoad" value="10"/>
         <property name="aerogear.windows_mpns.batchSize" value="1000"/>
         <property name="aerogear.windows_mpns.batchesToLoad" value="10"/>
+        <property name="aerogear.apns.push.host" value="${env.APNS_PUSH_HOST}"/>
+        <property name="aerogear.fcm.push.host" value="${env.FCM_PUSH_HOST}"/>
     </system-properties>
     <management>
         <security-realms>
