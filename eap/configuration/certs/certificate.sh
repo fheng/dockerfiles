@@ -14,3 +14,9 @@ keytool -genkey -noprompt -alias client.$DOMAIN -keyalg RSA -keysize 2048 -keyst
 
 keytool -exportcert -keystore client.$DOMAIN.keystore -storetype pkcs12 -storepass $CLIENT_PASSWORD -alias client.$DOMAIN -keypass $CLIENT_PASSWORD -file client.$DOMAIN.cer
 keytool -import -noprompt -file client.$DOMAIN.cer -alias client.$DOMAIN -keystore client.$DOMAIN.truststore -storepass $CLIENT_PASSWORD -keypass $CLIENT_PASSWORD
+
+wget https://www.apple.com/appleca/AppleIncRootCertificate.cer -O /tmp/AppleIncRootCertificate.cer
+wget https://developer.apple.com/certificationauthority/AppleWWDRCA.cer -O /tmp/AppleWWDRCA.cer
+
+keytool -importcert -noprompt -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -file /tmp/AppleIncRootCertificate.cer -alias appleroot
+keytool -importcert -noprompt -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -file /tmp/AppleWWDRCA.cer -alias applewwdr
