@@ -388,6 +388,54 @@
                         <page-size-bytes>2097152</page-size-bytes>
                         <message-counter-history-day-limit>10</message-counter-history-day-limit>
                     </address-setting>
+                    <address-setting match="jms.queue.AdmPushMessageQueue">
+                        <redelivery-delay>1500</redelivery-delay>
+                        <max-delivery-attempts>-1</max-delivery-attempts>
+                    </address-setting>
+                    <address-setting match="jms.queue.AdmTokenBatchQueue">
+                        <max-size-bytes>40000</max-size-bytes>
+                        <address-full-policy>FAIL</address-full-policy>
+                    </address-setting>
+                    <address-setting match="jms.queue.APNsPushMessageQueue">
+                        <redelivery-delay>1500</redelivery-delay>
+                        <max-delivery-attempts>-1</max-delivery-attempts>
+                    </address-setting>
+                    <address-setting match="jms.queue.APNsTokenBatchQueue">
+                        <max-size-bytes>40000</max-size-bytes>
+                        <address-full-policy>FAIL</address-full-policy>
+                    </address-setting>
+                    <address-setting match="jms.queue.GCMPushMessageQueue">
+                        <redelivery-delay>1500</redelivery-delay>
+                        <max-delivery-attempts>-1</max-delivery-attempts>
+                    </address-setting>
+                    <address-setting match="jms.queue.GCMTokenBatchQueue">
+                        <max-size-bytes>40000</max-size-bytes>
+                        <address-full-policy>FAIL</address-full-policy>
+                    </address-setting>
+                    <address-setting match="jms.queue.MPNSPushMessageQueue">
+                        <redelivery-delay>1500</redelivery-delay>
+                        <max-delivery-attempts>-1</max-delivery-attempts>
+                    </address-setting>
+                    <address-setting match="jms.queue.MPNSTokenBatchQueue">
+                        <max-size-bytes>40000</max-size-bytes>
+                        <address-full-policy>FAIL</address-full-policy>
+                    </address-setting>
+                    <address-setting match="jms.queue.SimplePushMessageQueue">
+                        <redelivery-delay>1500</redelivery-delay>
+                        <max-delivery-attempts>-1</max-delivery-attempts>
+                    </address-setting>
+                    <address-setting match="jms.queue.SimplePushTokenBatchQueue">
+                        <max-size-bytes>40000</max-size-bytes>
+                        <address-full-policy>FAIL</address-full-policy>
+                    </address-setting>
+                    <address-setting match="jms.queue.WNSPushMessageQueue">
+                        <redelivery-delay>1500</redelivery-delay>
+                        <max-delivery-attempts>-1</max-delivery-attempts>
+                    </address-setting>
+                    <address-setting match="jms.queue.WNSTokenBatchQueue">
+                        <max-size-bytes>40000</max-size-bytes>
+                        <address-full-policy>FAIL</address-full-policy>
+                    </address-setting>
                 </address-settings>
                 <jms-connection-factories>
                     <connection-factory name="InVmConnectionFactory">
@@ -422,6 +470,42 @@
                     </jms-queue>
                     <jms-queue name="DLQ">
                         <entry name="java:/jms/queue/DLQ"/>
+                    </jms-queue>
+                    <jms-queue name="AdmPushMessageQueue">
+                        <entry name="queue/AdmPushMessageQueue"/>
+                    </jms-queue>
+                    <jms-queue name="AdmTokenBatchQueue">
+                        <entry name="queue/AdmTokenBatchQueue"/>
+                    </jms-queue>
+                    <jms-queue name="APNsPushMessageQueue">
+                        <entry name="queue/APNsPushMessageQueue"/>
+                    </jms-queue>
+                    <jms-queue name="APNsTokenBatchQueue">
+                        <entry name="queue/APNsTokenBatchQueue"/>
+                    </jms-queue>
+                    <jms-queue name="GCMPushMessageQueue">
+                        <entry name="queue/GCMPushMessageQueue"/>
+                    </jms-queue>
+                    <jms-queue name="GCMTokenBatchQueue">
+                        <entry name="queue/GCMTokenBatchQueue"/>
+                    </jms-queue>
+                    <jms-queue name="MPNSPushMessageQueue">
+                        <entry name="queue/MPNSPushMessageQueue"/>
+                    </jms-queue>
+                    <jms-queue name="MPNSTokenBatchQueue">
+                        <entry name="queue/MPNSTokenBatchQueue"/>
+                    </jms-queue>
+                    <jms-queue name="SimplePushMessageQueue">
+                        <entry name="queue/SimplePushMessageQueue"/>
+                    </jms-queue>
+                    <jms-queue name="SimplePushTokenBatchQueue">
+                        <entry name="queue/SimplePushTokenBatchQueue"/>
+                    </jms-queue>
+                    <jms-queue name="WNSPushMessageQueue">
+                        <entry name="queue/WNSPushMessageQueue"/>
+                    </jms-queue>
+                    <jms-queue name="WNSTokenBatchQueue">
+                        <entry name="queue/WNSTokenBatchQueue"/>
                     </jms-queue>
                 </jms-destinations>
             </hornetq-server>
