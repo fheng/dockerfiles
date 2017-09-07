@@ -1,5 +1,5 @@
 # Use latest rhmap/eap image as the base
-FROM rhmap/eap
+FROM rhmap/eap:latest
 
 RUN mkdir -p $JBOSS_HOME/standalone/data && \
     mkdir -p $JBOSS_HOME/standalone/tmp/vfs/temp && \
