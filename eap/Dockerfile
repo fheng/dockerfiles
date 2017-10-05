@@ -11,6 +11,7 @@ RUN yum install --disablerepo * --enablerepo rhel-7-server-rpms  -y unzip wget  
 
 ## MYSQL
 ENV mysql_module_dir=$JBOSS_HOME/modules/com/mysql/jdbc/main/ \
+    mysql_connector_jar=mysql-connector-java.jar \
     NON_PROXY_HOSTS="" \
     HTTP_PROXY_HOST="" \
     HTTP_PROXY_PORT="" \
@@ -18,8 +19,8 @@ ENV mysql_module_dir=$JBOSS_HOME/modules/com/mysql/jdbc/main/ \
     HTTPS_PROXY_PORT=""
 
 RUN mkdir -p ${mysql_module_dir}
-RUN wget -O mysql-connector-java-5.1.18.jar http://search.maven.org/remotecontent\?filepath\=mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar
-RUN mv mysql-connector-java-5.1.18.jar ${mysql_module_dir}
+RUN wget -O ${mysql_connector_jar} http://search.maven.org/remotecontent\?filepath\=mysql/mysql-connector-java/5.1.44/mysql-connector-java-5.1.44.jar
+RUN mv ${mysql_connector_jar} ${mysql_module_dir}
 COPY configuration/xml/mysql-module.xml ${mysql_module_dir}/module.xml
 
 # Rename the original configuration file
