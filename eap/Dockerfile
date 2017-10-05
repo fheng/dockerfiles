@@ -11,7 +11,7 @@ RUN yum install --disablerepo * --enablerepo rhel-7-server-rpms  -y unzip wget  
 
 ## MYSQL
 ENV mysql_module_dir=$JBOSS_HOME/modules/com/mysql/jdbc/main/ \
-    mysql_connector_jar=mysql-connector-java.jar \
+    mysql_connector_jar=mysql-connector-java-5.1.44.jar \
     NON_PROXY_HOSTS="" \
     HTTP_PROXY_HOST="" \
     HTTP_PROXY_PORT="" \
